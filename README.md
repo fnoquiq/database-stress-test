@@ -1,4 +1,4 @@
-# Go Barber API
+# Database Stress Test
 
 ## :horse_racing: Iniciar a aplicação:
 
