@@ -12,4 +12,6 @@
 
   - Executar `yarn prisma generate` para configurar o prisma e rodar as migrations;
 
-- Por fim, execute `yarn dev` para levantar o servidor.
+- Logo após, execute `yarn server` para levantar a api.
+
+- E por fim, execute `yarn stress:configure` para configurar o stress e então `yarn stress:start` para iniciar o stress.
