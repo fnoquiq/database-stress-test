@@ -14,12 +14,15 @@
   },
   "dependencies": {
     "@prisma/client": "^3.8.1",
+    "axios": "^0.25.0",
     "cors": "^2.8.5",
     "dotenv-flow": "^3.2.0",
     "express": "^4.17.2"
   },
   "scripts": {
-    "dev": "tsnd --respawn --transpile-only --ignore-watch node_modules --exit-child src/server.ts",
+    "server": "tsnd --transpile-only --ignore-watch node_modules src/server.ts",
+    "stress:configure": "tsnd --transpile-only --ignore-watch node_modules src/requestConfigure.ts",
+    "stress:start": "tsnd --transpile-only --ignore-watch node_modules src/requestHandler.ts",
     "build": "tsc"
   }
 }

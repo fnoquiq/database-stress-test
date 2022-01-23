@@ -3,6 +3,7 @@ import { Request, Response, Router } from 'express'
 
 export default (router: Router): void => {
   router.get('/configure', async (request: Request, response: Response) => {
+    console.log('Request: /configure')
     try {
       await prisma.test.create({
         data: {
@@ -22,6 +23,7 @@ export default (router: Router): void => {
   })
 
   router.get('/stress', async (request: Request, response: Response) => {
+    console.log('Request: /stress')
     try {
       const testCounter = await prisma.test.findFirst({
         where: {
