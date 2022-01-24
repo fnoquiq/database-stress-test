@@ -20,9 +20,9 @@
     "express": "^4.17.2"
   },
   "scripts": {
-    "server": "tsnd --transpile-only --ignore-watch node_modules src/server.ts",
-    "stress:configure": "tsnd --transpile-only --ignore-watch node_modules src/requestConfigure.ts",
-    "stress:start": "tsnd --transpile-only --ignore-watch node_modules src/requestHandler.ts",
+    "server": "tsnd --transpile-only --ignore-watch node_modules src/server/server.ts",
+    "stress:configure": "tsnd --transpile-only --ignore-watch node_modules src/requestHandler/configure.ts",
+    "stress:start": "tsnd --transpile-only --ignore-watch node_modules src/requestHandler/stress.ts",
     "build": "tsc"
   }
 }

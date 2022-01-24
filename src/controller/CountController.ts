@@ -1,8 +1,9 @@
-import { prisma } from './prisma'
-import { Request, Response, Router } from 'express'
+import { Request, Response } from 'express';
 
-export default (router: Router): void => {
-  router.get('/configure', async (request: Request, response: Response) => {
+import { prisma } from '../config/prisma';
+
+export class CountController {
+  async configure(request: Request, response: Response) {
     console.log('Request: /configure')
     try {
       await prisma.test.create({
@@ -20,9 +21,9 @@ export default (router: Router): void => {
         err
       })
     }
-  })
+  }
 
-  router.get('/stress', async (request: Request, response: Response) => {
+  async stress(request: Request, response: Response) {
     console.log('Request: /stress')
     try {
       const testCounter = await prisma.test.findFirst({
@@ -37,7 +38,7 @@ export default (router: Router): void => {
         })
       }
 
-      await prisma.test.update({
+      const countUpdated = await prisma.test.update({
         where: {
           id: testCounter.id
         },
@@ -47,7 +48,7 @@ export default (router: Router): void => {
       })
       
       response.json({
-        message: 'ok'
+        count: countUpdated.count
       })
 
     }catch(err) {
@@ -56,5 +57,5 @@ export default (router: Router): void => {
         err
       })
     }
-  })
+  }
 }
