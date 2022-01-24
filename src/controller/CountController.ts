@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 
 import { prisma } from '../config/prisma';
+import { IController } from './IController';
 
-export class CountController {
+export class CountController implements IController{
   async configure(request: Request, response: Response) {
     console.log('Request: /configure')
     try {
@@ -12,8 +13,8 @@ export class CountController {
         }
       })
       
-      response.json({
-        configure: 'ok'
+      return response.json({
+        configure: 'configured'
       })
     }catch(err) {
       response.json({
