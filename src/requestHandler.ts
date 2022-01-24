@@ -2,7 +2,7 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'http://localhost:3333';
 
-const MAX_REQUESTS = 100
+const MAX_REQUESTS = process.env.MAX_REQUESTS || 250
 
 const requests: Promise<any>[] = []
 
