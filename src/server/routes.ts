@@ -6,8 +6,10 @@ import { TransactionController } from '../controller/TransactionController'
 let countController: IController
 
 if (process.env.IS_ENABLED_TRANSACTIONS === 'true') {
+  console.log('Transactions ON')
   countController = new TransactionController()
 } else {
+  console.log('Transactions OFF')
   countController = new CountController()
 }
 
