@@ -1,8 +1,17 @@
 import axios from 'axios'
+import { config } from 'dotenv-flow'
+
+config({ silent: true })
 
 axios.defaults.baseURL = 'http://localhost:3333';
 
-const MAX_REQUESTS = process.env.NUMBER_OF_REQUESTS || 250
+let MAX_REQUESTS = 50
+
+if (process.env.NUMBER_OF_REQUESTS) {
+  MAX_REQUESTS = parseInt(process.env.NUMBER_OF_REQUESTS)
+}
+
+console.log(MAX_REQUESTS)
 
 const requests: Promise<any>[] = []
 
