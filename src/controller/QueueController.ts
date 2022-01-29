@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { Job, Queue, QueueEvents, Worker } from 'bullmq';
+import { Job, Queue, Worker } from 'bullmq';
 import { prisma } from '../config/prisma'
 import { connection } from '../config/redis'
 
@@ -60,10 +60,3 @@ const myWorker = new Worker('stress', async (job: Job)=>{
     return { message: 'error', err }
   }
 }, { connection });
-
-const queueEvents = new QueueEvents('stress');
-
-queueEvents.on('completed', (arg) => {
-  console.log('completed', arg.returnvalue)
-  myQueue.getJobCounts('wait', 'completed', 'failed').then(res => console.log(`Queue status: [Wait: ${res.wait}] [Completed: ${res.completed}] [Failed: ${res.failed}]`))
-});

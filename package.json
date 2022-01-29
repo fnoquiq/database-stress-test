@@ -26,6 +26,7 @@
     "server": "tsnd --transpile-only --ignore-watch node_modules src/server/server.ts",
     "stress:configure": "tsnd --transpile-only --ignore-watch node_modules src/requestHandler/configure.ts",
     "stress:start": "tsnd --transpile-only --ignore-watch node_modules src/requestHandler/stress.ts",
+    "queue:visualizer": "tsnd --transpile-only --ignore-watch node_modules src/queue/QueueVisualizer.ts",
     "build": "tsc"
   }
 }
