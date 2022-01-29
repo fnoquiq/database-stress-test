@@ -2,12 +2,18 @@ import { CountController } from './../controller/CountController'
 import { Router } from 'express'
 import { IController } from '../controller/IController'
 import { TransactionController } from '../controller/TransactionController'
+import { TransactionAtomicController } from '../controller/TransactionAtomicController'
 
 let countController: IController
 
 if (process.env.IS_ENABLED_TRANSACTIONS === 'true') {
-  console.log('Transactions ON')
-  countController = new TransactionController()
+  if (process.env.ATOMIC_TRANSACTION === 'true') {
+    console.log('Transaction Atomic')
+    countController = new TransactionAtomicController()
+  } else {
+    console.log('Transactions ON')
+    countController = new TransactionController()
+  }
 } else {
   console.log('Transactions OFF')
   countController = new CountController()
