@@ -3,19 +3,19 @@ import { Router } from 'express'
 import { IController } from '../controller/IController'
 import { TransactionController } from '../controller/TransactionController'
 import { TransactionAtomicController } from '../controller/TransactionAtomicController'
+import { QueueController } from '../controller/QueueController'
 
 let countController: IController
 
-if (process.env.IS_ENABLED_TRANSACTIONS === 'true') {
-  if (process.env.ATOMIC_TRANSACTION === 'true') {
-    console.log('Transaction Atomic')
-    countController = new TransactionAtomicController()
-  } else {
-    console.log('Transactions ON')
-    countController = new TransactionController()
-  }
+console.log(`CONTROLLER INJECTION TYPE: ${process.env.CONTROLLER_INJECTION}`)
+
+if (process.env.CONTROLLER_INJECTION === 'TRANSACTIONS') {
+  countController = new TransactionController()
+} else if (process.env.CONTROLLER_INJECTION === 'ATOMIC_TRANSACTIONS') {
+  countController = new TransactionAtomicController()
+} else if (process.env.CONTROLLER_INJECTION === 'QUEUE') {
+  countController = new QueueController()
 } else {
-  console.log('Transactions OFF')
   countController = new CountController()
 }
 
