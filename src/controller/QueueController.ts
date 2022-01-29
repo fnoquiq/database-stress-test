@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { Job, Queue, Worker } from 'bullmq';
+import { Queue } from 'bullmq';
 import { prisma } from '../config/prisma'
 import { connection } from '../config/redis'
 
@@ -32,31 +32,3 @@ export class QueueController {
     return response.json(ret)
   }
 }
-
-const myWorker = new Worker('stress', async (job: Job)=>{
-  try {
-    const testCounter = await prisma.test.findFirst({
-      where: {
-        id: 1
-      }
-    })
-
-    if (!testCounter) {
-      return { error: 'Not found testCounter' }
-    }
-
-    const countUpdated = await prisma.test.update({
-      where: {
-        id: testCounter.id
-      },
-      data: {
-        count: testCounter.count + 1
-      }
-    })
-    
-    return { count: countUpdated.count }
-
-  }catch(err) {
-    return { message: 'error', err }
-  }
-}, { connection });
