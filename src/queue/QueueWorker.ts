@@ -1,11 +1,11 @@
 import { Job, Worker } from 'bullmq';
 
 import { prisma } from '../config/prisma';
-import { connection } from '../config/redis'
-
 import { config } from 'dotenv-flow'
 
 config({ silent: true })
+
+import { connection } from '../config/redis'
 
 const myWorker = new Worker('stress', async (job: Job)=>{
   try {

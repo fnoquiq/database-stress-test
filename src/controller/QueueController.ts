@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { Queue } from 'bullmq';
+import { Queue } from 'bullmq'
 import { prisma } from '../config/prisma'
 import { connection } from '../config/redis'
 
