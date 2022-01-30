@@ -1,6 +1,9 @@
 import { Queue, QueueEvents } from 'bullmq';
 
 import { connection } from '../config/redis'
+import { config } from 'dotenv-flow'
+
+config({ silent: true })
 
 const myQueue = new Queue('stress', { connection });
 const queueEvents = new QueueEvents('stress');

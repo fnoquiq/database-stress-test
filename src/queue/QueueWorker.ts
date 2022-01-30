@@ -3,6 +3,10 @@ import { Job, Worker } from 'bullmq';
 import { prisma } from '../config/prisma';
 import { connection } from '../config/redis'
 
+import { config } from 'dotenv-flow'
+
+config({ silent: true })
+
 const myWorker = new Worker('stress', async (job: Job)=>{
   try {
     const testCounter = await prisma.test.findFirst({
