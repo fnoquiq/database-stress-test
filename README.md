@@ -16,4 +16,6 @@
 
 - Logo após, execute `yarn server` para levantar a api.
 
+- Execute `yarn queue:worker` para ativar o worker e `yarn queue:visualizer` para ativar um visualizador da fila.
+
 - E por fim, execute `yarn stress:configure` para configurar o stress e então `yarn stress:start` para iniciar o stress.
